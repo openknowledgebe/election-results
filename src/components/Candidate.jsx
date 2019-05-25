@@ -15,7 +15,6 @@ const Candidate = ({ match, electionData }) => {
 
   const election = electionData.find(e => e.type === type);
   const candidate = election.candidates.find(c => c.id === parseInt(candidateId));
-  console.log(type);
   console.log(candidate);
 
   const capitalizeFirstLetter = s => s.charAt(0).toUpperCase() + s.slice(1);
@@ -37,7 +36,14 @@ const Candidate = ({ match, electionData }) => {
   const color = candidate.list.group.color;
 
   // TODO populate
-  const numVotes = 1000;
+  const numVotes = election.results[candidate.list.id].candidates[candidateId].votes;
+  const registeredBallots = election.results.count.registered_ballot;
+
+  const sumVotes = Object.keys(registeredBallots).reduce((num, key) => {
+    return num + registeredBallots[key];
+  }, 0);
+  const percentageOfVotes = parseInt((numVotes / sumVotes) * 100, 0);
+
   return (
     <div className="candidate-container">
       <header>
@@ -56,10 +62,10 @@ const Candidate = ({ match, electionData }) => {
             <span className="vote-counter__amount__total-label">stemmen</span>
           </div>
           <div className="vote-progress">
-            &#37; of votes counted
+            <strong>{percentageOfVotes}&#37;</strong> of votes counted
             <span className="vote-disclaimer">x of x voting stations</span>
             <div className="vote-progress__bar">
-
+              <div className="vote-progress__bar__bar" style={{width: `${percentageOfVotes}%`}} />
             </div>
             <div className="vote-timestamp">
               <span className="vote-timestamp__indicator">at</span>&nbsp;
