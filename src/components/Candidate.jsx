@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { withRouter } from 'react-router-dom';
 
 import '../assets/css/candidate.css';
@@ -32,7 +33,6 @@ const Candidate = ({ match, electionData }) => {
     return name;
   }
 
-
   const candidateName = splitName(candidate.name);
   const color = candidate.list.group.color;
 
@@ -52,7 +52,7 @@ const Candidate = ({ match, electionData }) => {
       <div className="vote-wrapper">
         <div className="vote-counter">
           <div className="vote-counter__amount">
-            <span className="vote-counter__amount__total">1000</span>
+            <span className="vote-counter__amount__total">{numVotes}</span>
             <span className="vote-counter__amount__total-label">stemmen</span>
           </div>
           <div className="vote-progress">
@@ -62,7 +62,8 @@ const Candidate = ({ match, electionData }) => {
 
             </div>
             <div className="vote-timestamp">
-              <span className="vote-timestamp__indicator">at</span> {new Date(new Date()).toDateString()}
+              <span className="vote-timestamp__indicator">at</span>&nbsp;
+              {moment().format('MMM Mo YYYY HH:mm:ss')}
             </div>
           </div>
         </div>
