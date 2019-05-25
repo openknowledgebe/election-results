@@ -3,7 +3,7 @@ import { API_URL } from '../constants';
 
 class API {
   constructor() {
-    this.BASE_URL = 'https://api.elections.openknowledge.be/format-i';
+    this.BASE_URL = 'https://api.elections.openknowledge.be';
     this.headers = {
       Accept: 'application/json'
     };
@@ -26,19 +26,23 @@ class API {
   }
 
   getEntities = (type = 'CK', year = 2019) => {
-    return fetch(`${this.BASE_URL}/entities/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
+    return fetch(`${this.BASE_URL}/format-i/entities/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
   }
 
   getGroups = (type = 'CK', year = 2019) => {
-    return fetch(`${this.BASE_URL}/groups/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
+    return fetch(`${this.BASE_URL}/format-i/groups/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
   }
 
   getLists = (type = 'CK', year = 2019) => {
-    return fetch(`${this.BASE_URL}/lists/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
+    return fetch(`${this.BASE_URL}/format-i/lists/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
   }
 
   getCandidates = (type = 'CK', year = 2019) => {
-    return fetch(`${this.BASE_URL}/candidates/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
+    return fetch(`${this.BASE_URL}/format-i/candidates/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
+  }
+
+  getResults = (type = 'CK', year = 2019) => {
+    return fetch(`${this.BASE_URL}/format-r/results/${year}/${type}?test&final`, this.fetchOptions).then(this.handleResponse);
   }
 }
 
