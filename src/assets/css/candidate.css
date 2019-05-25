@@ -1,11 +1,68 @@
 .candidate-container {
-  width: 960px;
+  width: 400px;
 }
 
-.candidate-container header {
-  padding: 2rem;
+.name-container .first-name, .name-container .last-name {
+  font-size: 3rem;
 }
 
-.candidate-container .last-name {
+.name-container {
+  padding: .5rem 0 .5rem 2rem;
+  color: #fff;
+}
+
+.name-container .last-name {
   font-weight: normal;
+}
+
+.vote-wrapper {
+  background-color: #f4f4f4;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.vote-counter {
+  background-color: #fff;
+  width: 90%;
+  color: #414a4b;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: .5rem;
+}
+
+.vote-counter__amount {
+  text-align: center;
+}
+.vote-counter__amount__total {
+  font-weight: bold;
+  font-size: 4rem;
+}
+
+.vote-counter__amount__total-label {
+  text-transform: uppercase;
+  margin-left: .8rem;
+}
+
+.vote-disclaimer {
+  font-size: 1.2rem;
+  text-transform: none;
+  margin-top: .5rem;
+  display: block;
+  text-align: left;
+}
+
+.vote-progress {
+  text-transform: uppercase;
+
+  width: 80%;
+  margin: 2rem auto;
+}
+
+.vote-progress__bar {
+  text-transform: uppercase;
+  margin-top: 2rem;
+}
+
+.vote-timestamp__indicator {
+  text-transform: none;
 }

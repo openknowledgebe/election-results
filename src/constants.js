@@ -10,3 +10,8 @@ export const ELECTION_TYPES = [
   'DE',
   'EU'
 ];
+
+
+export const TRANSLATIONS = {
+
+}
