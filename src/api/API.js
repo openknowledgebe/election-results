@@ -17,6 +17,7 @@ class API {
 
   handleResponse = async (response) => {
     if (!response.ok) {
+      if (!response.statusText) throw Error('unknown error');
       throw Error(response.statusText);
     }
     const contentType = response.headers.get('content-type');
@@ -28,7 +29,7 @@ class API {
     return fetch(`${this.BASE_URL}/entities/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
   }
 
-  getParties = (type = 'CK', year = 2019) => {
+  getGroups = (type = 'CK', year = 2019) => {
     return fetch(`${this.BASE_URL}/groups/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
   }
 
