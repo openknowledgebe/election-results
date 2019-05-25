@@ -11,7 +11,7 @@ const App = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" render={() => <Redirect to="/2019"/>} />
-      <Route path="/:year" component={Overview} />
+      <Route exact path="/:year" component={Overview} />
       <Route path="/:year/:list/:party/:candidate" component={Candidate} />
       <Route component={NotFound} />
     </Switch>

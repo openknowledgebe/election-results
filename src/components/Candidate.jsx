@@ -1,16 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { API } from '../constants';
 
-const Candidate = () => {
+const Candidate = ({ match }) => {
+  const { year, list, party, candidate } = match.params;
+
+  API.getCandidates()
+    .then(console.log);
+
   return (
     <div>
       Overview / Site map
     </div>
   );
-};
-
-Candidate.propTypes = {
-
 };
 
 export default Candidate;
