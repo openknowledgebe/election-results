@@ -12,11 +12,12 @@ const App = () => {
   const [candidates, setCandidates] = useState([]);
 
   const getCandidates = async () => {
-    const queue = ELECTION_TYPES.map(type => API.getCandidates(type));
-    const results = await Promise.all(queue);
-    return results.reduce((accumulator, candidatesPerType) => {
-      return { ...accumulator, ...candidatesPerType };
-    }, {});
+    const queue = ELECTION_TYPES.map(async (type) => {
+      const candidatesPerType = await API.getCandidates(type);
+      const arrayOfCandidates = Object.keys(candidatesPerType).map(key => candidatesPerType[key])
+      return { type, candidates: arrayOfCandidates };
+    });
+    return Promise.all(queue);
   }
 
   useEffect(() => {
