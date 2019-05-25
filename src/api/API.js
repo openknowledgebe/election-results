@@ -44,6 +44,10 @@ class API {
   getResults = (type = 'CK', year = 2019) => {
     return fetch(`${this.BASE_URL}/format-r/results/${year}/${type}?test&final`, this.fetchOptions).then(this.handleResponse);
   }
+
+  getEvolution = (type = 'CK', year = 2019) => {
+    return fetch(`${this.BASE_URL}/format-r/evolution/${year}/${type}?test`, this.fetchOptions).then(this.handleResponse);
+  }
 }
 
 export default API;

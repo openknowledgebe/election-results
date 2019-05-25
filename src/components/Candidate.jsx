@@ -15,7 +15,6 @@ const Candidate = ({ match, electionData }) => {
 
   const election = electionData.find(e => e.type === type);
   const candidate = election.candidates.find(c => c.id === parseInt(candidateId));
-  console.log(candidate);
 
   const capitalizeFirstLetter = s => s.charAt(0).toUpperCase() + s.slice(1);
   const splitName = (fullName) => {
@@ -44,6 +43,12 @@ const Candidate = ({ match, electionData }) => {
   }, 0);
   const percentageOfVotes = parseInt((numVotes / sumVotes) * 100, 0);
 
+  let processedStations = 0;
+  const totalStations = election.evolution.reduce((sum, evo) => {
+    processedStations += evo.stations_processed;
+    return sum + evo.stations_total;
+  }, 0);
+
   return (
     <div className="candidate-container">
       <header>
@@ -59,11 +64,11 @@ const Candidate = ({ match, electionData }) => {
         <div className="vote-counter">
           <div className="vote-counter__amount">
             <span className="vote-counter__amount__total">{numVotes}</span>
-            <span className="vote-counter__amount__total-label">stemmen</span>
+            <span className="vote-counter__amount__total-label">votes</span>
           </div>
           <div className="vote-progress">
-            <strong>{percentageOfVotes}&#37;</strong> of votes counted
-            <span className="vote-disclaimer">x of x voting stations</span>
+            <strong>{percentageOfVotes}&#37;</strong> of counted votes
+            <span className="vote-disclaimer">{processedStations} of {totalStations} voting stations</span>
             <div className="vote-progress__bar">
               <div className="vote-progress__bar__bar" style={{width: `${percentageOfVotes}%`}} />
             </div>

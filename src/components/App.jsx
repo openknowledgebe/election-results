@@ -15,8 +15,10 @@ const App = () => {
     const queue = ELECTION_TYPES.map(async (type) => {
       const resultsPerType = await API.getResults(type);
       const candidatesPerType = await API.getCandidates(type);
+      const evolution = await API.getEvolution(type);
       const arrayOfCandidates = Object.keys(candidatesPerType).map(key => candidatesPerType[key]);
-      return { type, results: resultsPerType, candidates: arrayOfCandidates };
+      const arrayOfEvolution = Object.keys(evolution).map(key => evolution[key]);
+      return { type, results: resultsPerType, evolution: arrayOfEvolution, candidates: arrayOfCandidates };
     });
     return Promise.all(queue);
   }
