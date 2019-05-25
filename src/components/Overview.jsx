@@ -9,7 +9,7 @@ const Overview = ({ match, candidates }) => {
   const generateSlug = s => s.replace(/\s+/g, '-').toLowerCase();
 
   const renderCandidate = (candidate, type) => {
-    const URL = `/2019/type/${candidate.list.id}/${type}/${generateSlug(candidate.name)}`;
+    const URL = `/2019/${type}/${candidate.list.id}/${generateSlug(candidate.name)}`;
     return (
       <li>
         <Link to={URL}>{candidate.name}</Link>
