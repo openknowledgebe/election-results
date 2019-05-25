@@ -6,12 +6,12 @@ import Candidate from './Candidate';
 import NotFound from './NotFound';
 
 import 'normalize.css';
-import '../index.css';
+import '../assets/css/index.css';
 
 const App = () => {
-  const [candidates, setCandidates] = useState([]);
+  const [electionData, setElectionData] = useState([]);
 
-  const getCandidates = async () => {
+  const getElectionData = async () => {
     const queue = ELECTION_TYPES.map(async (type) => {
       const resultsPerType = await API.getResults(type);
       const candidatesPerType = await API.getCandidates(type);
@@ -22,15 +22,15 @@ const App = () => {
   }
 
   useEffect(() => {
-    getCandidates().then(setCandidates);
+    getElectionData().then(setElectionData);
   }, []);
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/2019"/>} />
-        <Route exact path="/:year" render={() => <Overview candidates={candidates} />} />
-        <Route path="/:year/:list/:party/:candidate" render={() => <Candidate candidates={candidates} />} />
+        <Route exact path="/:year" render={() => <Overview electionData={electionData} />} />
+        <Route exact path="/:year/:type/:list/:candidate" render={() => <Candidate electionData={electionData} />} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

@@ -1,0 +1,11 @@
+.candidate-container {
+  width: 960px;
+}
+
+.candidate-container header {
+  padding: 2rem;
+}
+
+.candidate-container .last-name {
+  font-weight: normal;
+}

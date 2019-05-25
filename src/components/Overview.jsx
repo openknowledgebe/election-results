@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-const Overview = ({ match, candidates }) => {
+const Overview = ({ match, electionData }) => {
   const { year } = match.params;
 
-  if (candidates.length === 0) return <p>Loading candidates...</p>;
+  if (electionData.length === 0) return <p>Loading candidates...</p>;
 
   const generateSlug = s => s.replace(/\s+/g, '-').toLowerCase();
 
   const renderCandidate = (candidate, type) => {
-    const URL = `/2019/${type}/${candidate.list.name}/${generateSlug(candidate.name)}`;
+    const URL = `/2019/${type}/${candidate.list.name}/${generateSlug(candidate.name)}-${candidate.id}`;
     return (
       <li key={candidate.id}>
         <Link to={URL}>{candidate.name}</Link>
@@ -31,8 +31,8 @@ const Overview = ({ match, candidates }) => {
       </div>
     );
   }
-  console.log(candidates);
-  const $candidateGroups = candidates.map(renderGroupOfCandidates);
+  console.log(electionData);
+  const $candidateGroups = electionData.map(renderGroupOfCandidates);
 
   return (
     <div>
