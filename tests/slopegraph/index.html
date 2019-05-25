@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="js-laddergraph laddergraph"></div>
+
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="laddergraph.js"></script>
+
+  <script>
+    'use strict';
+
+    (function() {
+
+      d3.json('data.json', function(error, data) {
+        if (error) {
+          throw error;
+        };
+
+        var laddergraph = charts.laddergraph()
+                          .leftKey1('Pre')
+                          .rightKey('Post')
+                          .tooltipFormat(function(d) {
+                            var text = '<strong>' + d.Name + '</strong>';
+                            text += '<dt>' + d.Votes  + ' votes' + '</dt>';
+                            return text;
+                          });
+
+        d3.select('.js-laddergraph')
+            .datum(data)
+            .call(laddergraph);
+      });
+
+    })();
+
+  </script>
+
+</body>
+</html>
