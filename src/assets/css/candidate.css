@@ -77,6 +77,19 @@
   border-radius: .8rem;
 }
 
+.vote-timestamp {
+  font-size: 1.4rem;
+}
+
 .vote-timestamp__indicator {
   text-transform: none;
+}
+
+.okbe-logo-container {
+  width: 100%;
+  text-align: center;
+}
+
+.okbe-logo-container img {
+  width: 70%;
 }

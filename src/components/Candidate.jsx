@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
-
+import okbeLogo from '../assets/img/okbe-logo.png';
 import '../assets/css/candidate.css';
 
 const Candidate = ({ match, electionData }) => {
@@ -52,7 +52,7 @@ const Candidate = ({ match, electionData }) => {
   return (
     <div className="candidate-container">
       <header>
-        <div className="logo-container">
+        <div className="party-logo-container">
         </div>
         <div className="name-container" style={{ backgroundColor: `#${color}` }}>
           <h2 className="first-name">{candidateName.firstName}</h2>
@@ -77,6 +77,9 @@ const Candidate = ({ match, electionData }) => {
               {moment().format('MMM Mo YYYY HH:mm:ss')}
             </div>
           </div>
+        </div>
+        <div className="okbe-logo-container">
+          <a href="http://openknowledge.be"><img src={okbeLogo} alt="Open Knowledge Belgium logo" /></a>
         </div>
       </div>
     </div>
