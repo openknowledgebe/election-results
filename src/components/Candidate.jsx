@@ -41,6 +41,8 @@ const Candidate = ({ history, match, electionData }) => {
   }
 
   const candidateName = splitName(candidate.name);
+  document.title = `${candidateName.firstName} ${candidateName.lastName} | Open Knowledge Belgium`;
+
   const color = candidate.list.group.color;
 
   let processedStations = 0;

@@ -24,14 +24,13 @@ const App = () => {
   }
 
   useEffect(() => {
-    document.title = 'Elections | Open Knowledge Belgium';
     getElectionData().then(setElectionData);
   }, []);
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" render={() => <Redirect to="/2019"/>} />
+        <Redirect exact from="/" to="/2019" />
         <Route exact path="/:year" render={() => <Overview electionData={electionData} />} />
         <Route exact path="/:year/:type/:list/:candidate" render={() => <Candidate electionData={electionData} />} />
         <Route component={NotFound} />
