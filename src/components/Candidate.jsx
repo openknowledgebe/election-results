@@ -63,7 +63,7 @@ const Candidate = ({ history, match, electionData }) => {
 
   const partyLogoSrc = partiesLogos.find((p) => {
     return p.name.toLowerCase() === candidate.list.group.name.toLowerCase();
-  }).img || null;
+  }) || null;
 
   const timestamp = moment(`${election.results.date} ${election.results.time}`, 'DD/MM/YYYY HH:mm:ss').format(('MMM Mo YYYY HH:mm:ss'));
 
@@ -72,7 +72,7 @@ const Candidate = ({ history, match, electionData }) => {
       <header>
         <div className="party-logo-container">
           { partyLogoSrc !== null
-            ? <img src={partyLogoSrc} alt={`${candidate.list.name} logo`} />
+            ? <img src={partyLogoSrc.img} alt={`${candidate.list.name} logo`} />
             : <p>No party logo available</p>
           }
         </div>
