@@ -107,7 +107,7 @@ const Candidate = ({ location, history, match, electionData }) => {
       <div className="card-actions">
         <Link to={`/${year}`}>&larr; View all candidates</Link>
         <a
-          href={`https://twitter.com/intent/tweet?text=View real-time election results of ${candidateName.first.trim()} ${candidateName.last.trim()} at https://elections.openknowledge.be/${location.pathname} @OpenKnowledgeBE`}
+          href={`https://twitter.com/intent/tweet?text=View real-time election results of ${candidateName.first.trim()} ${candidateName.last.trim()} at https://elections.openknowledge.be/${location.pathname} via @OpenKnowledgeBE`}
           target="_blank"
           rel="noopener noreferrer"
           className="twitter"
