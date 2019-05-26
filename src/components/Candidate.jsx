@@ -65,6 +65,8 @@ const Candidate = ({ history, match, electionData }) => {
     return p.name.toLowerCase() === candidate.list.group.name.toLowerCase();
   }).img || null;
 
+  const timestamp = moment(`${election.results.date} ${election.results.time}`, 'DD/MM/YYYY HH:mm:ss').format(('MMM Mo YYYY HH:mm:ss'));
+
   return (
     <div className="candidate-container">
       <header>
@@ -93,8 +95,7 @@ const Candidate = ({ history, match, electionData }) => {
               <div className="vote-progress__bar__bar" style={{width: `${percentageOfVotes}%`}} />
             </div>
             <div className="vote-timestamp">
-              <span className="vote-timestamp__indicator">at</span>&nbsp;
-              {moment().format('MMM Mo YYYY HH:mm:ss')}
+              <span className="vote-timestamp__indicator">at</span>&nbsp;{timestamp || moment().format(('MMM Mo YYYY HH:mm:ss'))}
             </div>
           </div>
         </div>
