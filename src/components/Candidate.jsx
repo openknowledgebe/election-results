@@ -27,7 +27,7 @@ const Candidate = ({ location, history, match, electionData }) => {
     });
   }, [candidateId, type]);
 
-  if (electionData.length === 0 || !candidate) return <p>Loading...</p>;
+  if (electionData.length === 0 || !candidate) return <p></p>;
 
   const election = electionData.find(e => e.type === type);
 
@@ -57,7 +57,7 @@ const Candidate = ({ location, history, match, electionData }) => {
     return sum + evo.stations_total;
   }, 0);
 
-  if (!candidate) return <p>Loading</p>;
+  if (!candidate) return <p></p>;
 
   const registeredBallots = election.results.length === 0 ? 0 : election.results.count.registered_ballot;
 
@@ -71,7 +71,7 @@ const Candidate = ({ location, history, match, electionData }) => {
     return p.name.toLowerCase() === candidate.list.group.name.toLowerCase();
   });
 
-  const timestamp = moment(`${election.results.date} ${election.results.time}`, 'DD/MM/YYYY HH:mm:ss').format(('MMM Mo YYYY HH:mm:ss'));
+  const timestamp = moment(`${election.results.date} ${election.results.time}`, 'DD/MM/YYYY HH:mm:ss').format(('MMM Do YYYY HH:mm:ss'));
 
   return (
     <div className="candidate-container">
