@@ -65,7 +65,7 @@ const Candidate = ({ location, history, match, electionData }) => {
   const sumVotes = Object.keys(registeredBallots).reduce((num, key) => {
     return num + registeredBallots[key];
   }, 0);
-  const percentageOfVotes = parseInt((numVotes / sumVotes) * 100, 0) || 0;
+  const percentageOfVotes = parseInt((numVotes / sumVotes) * 100, 5) || 0;
 
   const partyLogoSrc = partiesLogos.find((p) => {
     return p.name.toLowerCase() === candidate.list.group.name.toLowerCase();
@@ -77,7 +77,7 @@ const Candidate = ({ location, history, match, electionData }) => {
     <div className="candidate-container">
       <header>
         <div className="party-logo-container">
-          { partyLogoSrc.img
+          { partyLogoSrc && partyLogoSrc.img
             ? <img src={partyLogoSrc.img} alt={`${candidate.list.name} logo`} />
             : <p>No party logo available</p>
           }
@@ -95,7 +95,7 @@ const Candidate = ({ location, history, match, electionData }) => {
             <span className="vote-counter__amount__total-label">votes</span>
           </div>
           <div className="vote-progress">
-            <strong>{percentageOfVotes}&#37;</strong> of counted votes
+            <strong>{percentageOfVotes.toFixed(2)}&#37;</strong> of counted votes
             <span className="vote-disclaimer">{processedStations} of {totalStations} voting stations</span>
             <div className="vote-progress__bar">
               <div className="vote-progress__bar__bar" style={{width: `${percentageOfVotes}%`}} />
