@@ -24,6 +24,7 @@ const App = () => {
   }
 
   useEffect(() => {
+    document.title = 'Elections | Open Knowledge Belgium';
     getElectionData().then(setElectionData);
   }, []);
 
