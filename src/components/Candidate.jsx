@@ -65,7 +65,7 @@ const Candidate = ({ location, history, match, electionData }) => {
   const sumVotes = Object.keys(registeredBallots).reduce((num, key) => {
     return num + registeredBallots[key];
   }, 0);
-  const percentageOfVotes = parseInt((numVotes / sumVotes) * 100, 5) || 0;
+  const percentageOfVotes = numVotes / sumVotes * 100 || 0;
 
   const partyLogoSrc = partiesLogos.find((p) => {
     return p.name.toLowerCase() === candidate.list.group.name.toLowerCase();
