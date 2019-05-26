@@ -5,6 +5,7 @@
   "dependencies": {
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-ga": "^2.5.7",

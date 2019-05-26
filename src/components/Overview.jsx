@@ -11,7 +11,7 @@ const Overview = ({ match, electionData, history }) => {
   const [searches, setSearchState] = useState({});
   const { year } = match.params;
 
-  if (electionData.length === 0) return <p>Loading candidates...</p>;
+  if (electionData.length === 0) return <p></p>;
 
   const generateSlug = s => s.replace(/\s+/g, '-').toLowerCase();
 
@@ -65,7 +65,7 @@ const Overview = ({ match, electionData, history }) => {
       </div>
     );
   }
-  console.log(electionData);
+
   const $candidateGroups = electionData.map(renderCandidatesPerElection);
 
   return (

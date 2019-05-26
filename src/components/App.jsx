@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import NProgress from 'nprogress';
 import { API, ELECTION_TYPES } from '../constants';
 import Overview from './Overview';
 import Candidate from './Candidate';
 import NotFound from './NotFound';
 
 import 'normalize.css';
+import '../assets/css/nprogress.css';
 import '../assets/css/index.css';
 
 const App = () => {
@@ -24,8 +26,12 @@ const App = () => {
   }
 
   useEffect(() => {
+    NProgress.start();
     document.title = 'Elections | Open Knowledge Belgium';
-    getElectionData().then(setElectionData);
+    getElectionData().then((data) => {
+      NProgress.done();
+      setElectionData(data);
+    });
   }, []);
 
   return (

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import NProgress from 'nprogress';
 import moment from 'moment';
 import { Link, withRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
@@ -19,7 +20,11 @@ const Candidate = ({ location, history, match, electionData }) => {
   const candidateId = candidateSlug.split('-').pop().trim();
 
   useEffect(() => {
-    API.getResultsPerCandidate(candidateId, type).then(setCandidateDetail);
+    NProgress.start();
+    API.getResultsPerCandidate(candidateId, type).then((detail) => {
+      NProgress.done();
+      setCandidateDetail(detail);
+    });
   }, [candidateId, type]);
 
   if (electionData.length === 0 || !candidate) return <p>Loading...</p>;
