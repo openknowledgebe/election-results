@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { API, ELECTION_TYPES } from '../constants';
 import Overview from './Overview';
 import Candidate from './Candidate';

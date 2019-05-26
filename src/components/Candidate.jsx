@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import { API, ELECTION_TYPE_MAP } from '../constants';
 import okbeLogo from '../assets/img/okbe-logo.png';
 import partiesLogos from '../assets/data/parties-logos.json';
 
 import '../assets/css/candidate.css';
 
-const Candidate = ({ match, electionData }) => {
+const Candidate = ({ history, match, electionData }) => {
+  history.listen(location => ReactGA.pageview(location.pathname));
   const [candidate, setCandidateDetail] = useState(null);
 
   const { year, list, type } = match.params;
@@ -17,12 +19,11 @@ const Candidate = ({ match, electionData }) => {
 
   useEffect(() => {
     API.getResultsPerCandidate(candidateId, type).then(setCandidateDetail);
-  }, [candidateId]);
+  }, [candidateId, type]);
 
   if (electionData.length === 0 || !candidate) return <p>Loading...</p>;
 
   const election = electionData.find(e => e.type === type);
-  console.log(electionData);
 
   const capitalizeFirstLetter = s => s.charAt(0).toUpperCase() + s.slice(1);
   const splitName = (fullName) => {
@@ -49,7 +50,6 @@ const Candidate = ({ match, electionData }) => {
   }, 0);
 
   if (!candidate) return <p>Loading</p>;
-  console.log({ candidate });
 
   const registeredBallots = election.results.length === 0 ? 0 : election.results.count.registered_ballot;
 
@@ -60,7 +60,6 @@ const Candidate = ({ match, electionData }) => {
   const percentageOfVotes = parseInt((numVotes / sumVotes) * 100, 0) || 0;
 
   const partyLogoSrc = partiesLogos.find((p) => {
-    console.log(p.name, candidate.list.group.name)
     return p.name.toLowerCase() === candidate.list.group.name.toLowerCase();
   }).img || null;
 

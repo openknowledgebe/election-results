@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import { ELECTION_TYPE_MAP } from '../constants';
 
 import '../assets/css/overview.css';
 
-const Overview = ({ match, electionData }) => {
+const Overview = ({ match, electionData, history }) => {
+  history.listen(location => ReactGA.pageview(location.pathname));
+
   const [searches, setSearchState] = useState({});
   const { year } = match.params;
 
