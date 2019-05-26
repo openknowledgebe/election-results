@@ -6,6 +6,7 @@
 
 .election-container {
   width: 400px;
+  border: 1px solid #f4f4f4;
 }
 
 .election-container header {
@@ -21,7 +22,11 @@
 .election-container__candidates-list {
   overflow-y: scroll;
   height: 500px;
-  padding: 0;
+  padding: 1rem;
+}
+
+.candidate-search {
+  padding: .5rem;
 }
 
 .candidate-search input {
