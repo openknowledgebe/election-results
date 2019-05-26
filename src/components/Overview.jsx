@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { ELECTION_TYPE_MAP } from '../constants';
+
+import '../assets/css/overview.css';
 
 const Overview = ({ match, electionData }) => {
+  const [searches, setSearchState] = useState({});
   const { year } = match.params;
 
   if (electionData.length === 0) return <p>Loading candidates...</p>;
@@ -17,25 +21,52 @@ const Overview = ({ match, electionData }) => {
     )
   }
 
-  const renderGroupOfCandidates = (group) => {
-    const candidatesPerType = group.candidates;
+  const updateSearchQueryForType = (e, type) => {
+    setSearchState({
+      ...searches,
+      [type]: e.currentTarget.value
+    })
+  }
 
-    const $candidates = candidatesPerType.map(c => renderCandidate(c, group.type));
+  const renderCandidatesPerElection = (election) => {
+    const { type } = election;
+    const candidatesPerType = election.candidates;
 
+    const $candidates = candidatesPerType
+      .filter((c) => {
+        const searchQuery = searches[type];
+        if (!searchQuery) return true;
+        if (c.name.toLowerCase().includes(searchQuery.toLowerCase())) return true;
+        return false;
+      })
+      .sort((a, b) => {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+      })
+      .map(c => renderCandidate(c, type));
     return (
-      <div key={group.type}>
-        <h3>{group.type}</h3>
-        <ul>
+      <div className="election-container" key={type}>
+        <header>
+          <h2>{ELECTION_TYPE_MAP[type].nl}</h2>
+          <h2>{ELECTION_TYPE_MAP[type].fr}</h2>
+        </header>
+        <div className="candidate-search">
+          <input placeholder="search for a candidate..." type="search" onChange={(e) => updateSearchQueryForType(e, type)} />
+        </div>
+        <ul className="election-container__candidates-list">
           {$candidates}
         </ul>
       </div>
     );
   }
   console.log(electionData);
-  const $candidateGroups = electionData.map(renderGroupOfCandidates);
+  const $candidateGroups = electionData.map(renderCandidatesPerElection);
 
   return (
-    <div>
+    <div className="overview-container">
       {$candidateGroups}
     </div>
   );

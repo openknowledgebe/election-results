@@ -1,0 +1,37 @@
+.overview-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.election-container {
+  width: 400px;
+}
+
+.election-container header {
+  background: #f4f4f4;
+  padding: 1rem;
+  text-align: center;
+}
+
+.election-container header h2 {
+  font-size: 1.7rem;
+}
+
+.election-container__candidates-list {
+  overflow-y: scroll;
+  height: 500px;
+  padding: 0;
+}
+
+.candidate-search input {
+  width: 100%;
+  padding: .5rem;
+  border-radius: .5rem;
+  border:1px solid #cccccc
+}
+
+.election-container__candidates-list li {
+  list-style-type: none;
+  padding: .5rem 0;
+}
