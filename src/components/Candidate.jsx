@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { API, ELECTION_TYPE_MAP } from '../constants';
 import okbeLogo from '../assets/img/okbe-logo.png';
@@ -102,6 +102,9 @@ const Candidate = ({ history, match, electionData }) => {
         <div className="okbe-logo-container">
           <a href="http://openknowledge.be"><img src={okbeLogo} alt="Open Knowledge Belgium logo" /></a>
         </div>
+      </div>
+      <div className="card-actions">
+        <Link to={`/${year}`}>&larr; View all candidates</Link>
       </div>
     </div>
   );

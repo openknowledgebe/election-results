@@ -114,3 +114,9 @@
 .okbe-logo-container img {
   width: 40%;
 }
+
+.card-actions {
+  display: flex;
+  margin-top: 1.5rem;
+  font-size: 1.3rem;
+}
