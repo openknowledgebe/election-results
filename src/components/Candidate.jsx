@@ -63,7 +63,7 @@ const Candidate = ({ match, electionData }) => {
         <div className="party-logo-container">
           { partyImgSrc
             ? <img src={partyImgSrc} alt={`${candidate.list.name} logo`} />
-            : <p>No logo available</p>
+            : <p>No party logo available</p>
           }
         </div>
         <div className="name-container" style={{ backgroundColor: `#${color}` }}>

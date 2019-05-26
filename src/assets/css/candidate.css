@@ -1,5 +1,25 @@
 .candidate-container {
-  width: 400px;
+  width: 500px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+.candidate-container header {
+  display: flex;
+}
+
+.name-container {
+  padding: .5rem 0 .5rem 2rem;
+  color: #fff;
+  width: 90%;
+}
+
+.party-logo-container {
+  background: #f4f4f4;
+  display: flex;
+  text-align: center;
+  align-items: center;
 }
 
 .name-container .first-name {
@@ -10,10 +30,6 @@
   font-size: 3.2rem;
 }
 
-.name-container {
-  padding: .5rem 0 .5rem 2rem;
-  color: #fff;
-}
 
 .name-container .last-name {
   font-weight: normal;
@@ -91,5 +107,5 @@
 }
 
 .okbe-logo-container img {
-  width: 70%;
+  width: 40%;
 }
