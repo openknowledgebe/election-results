@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
-import { API } from '../constants';
+import { API, ELECTION_TYPE_MAP } from '../constants';
 import okbeLogo from '../assets/img/okbe-logo.png';
 import partiesLogos from '../assets/data/parties-logos.json';
 
@@ -76,7 +76,7 @@ const Candidate = ({ match, electionData }) => {
         <div className="name-container" style={{ backgroundColor: `#${color}` }}>
           <h2 className="first-name">{candidateName.firstName}</h2>
           <h2 className="last-name">{candidateName.lastName}</h2>
-          <h3>#{candidate.nr}</h3>
+          <h3>#{candidate.nr} {ELECTION_TYPE_MAP[type].nl}/{ELECTION_TYPE_MAP[type].fr}</h3>
         </div>
       </header>
       <div className="vote-wrapper">
