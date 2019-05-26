@@ -1,6 +1,3 @@
-
-import { API_URL } from '../constants';
-
 class API {
   constructor() {
     this.BASE_URL = 'https://api.elections.openknowledge.be';
