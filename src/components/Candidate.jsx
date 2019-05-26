@@ -48,14 +48,10 @@ const Candidate = ({ match, electionData }) => {
     return sum + evo.stations_total;
   }, 0);
 
-  const partyImgSrc = partiesLogos.find((p) => {
-    return p.name.toLowerCase() === candidate.list.group.name.toLowerCase();
-  }) || null;
-
   if (!candidate) return <p>Loading</p>;
   console.log({ candidate });
 
-  const registeredBallots = election.results.count.registered_ballot;
+  const registeredBallots = election.results.length === 0 ? 0 : election.results.count.registered_ballot;
 
   const numVotes = candidate.votes;
   const sumVotes = Object.keys(registeredBallots).reduce((num, key) => {
@@ -63,13 +59,17 @@ const Candidate = ({ match, electionData }) => {
   }, 0);
   const percentageOfVotes = parseInt((numVotes / sumVotes) * 100, 0) || 0;
 
-  console.log(candidate, partiesLogos);
+  const partyLogoSrc = partiesLogos.find((p) => {
+    console.log(p.name, candidate.list.group.name)
+    return p.name.toLowerCase() === candidate.list.group.name.toLowerCase();
+  }).img || null;
+
   return (
     <div className="candidate-container">
       <header>
         <div className="party-logo-container">
-          { partyImgSrc
-            ? <img src={partyImgSrc} alt={`${candidate.list.name} logo`} />
+          { partyLogoSrc !== null
+            ? <img src={partyLogoSrc} alt={`${candidate.list.name} logo`} />
             : <p>No party logo available</p>
           }
         </div>

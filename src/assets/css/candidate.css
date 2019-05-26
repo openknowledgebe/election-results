@@ -12,7 +12,7 @@
 .name-container {
   padding: .5rem 0 .5rem 2rem;
   color: #fff;
-  width: 90%;
+  width: 70%;
 }
 
 .party-logo-container {
@@ -20,6 +20,12 @@
   display: flex;
   text-align: center;
   align-items: center;
+  width: 30%;
+  padding: 1rem;
+}
+
+.party-logo-container img {
+  max-width: 100%;
 }
 
 .name-container .first-name {
@@ -29,7 +35,6 @@
 .name-container .last-name {
   font-size: 3.2rem;
 }
-
 
 .name-container .last-name {
   font-weight: normal;
