@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+  color: #000;
+  font-family: Roboto;
+  font-size: 14px;
+  margin: 15px 8px;
+}
+.laddergraph {
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  margin: 0 auto;
+}
+.line {
+	stroke: #FAC090 !important;
+	stroke-width: 1px;
+}
+.line:hover {
+  stroke: #f89734 !important;
+	stroke-width: 2px;
+  cursor: pointer;
+}
+
+.circle {
+	fill: #FAC090 !important;
+  stroke-width: 1px;
+}
+.circle:hover {
+	fill: #f89734 !important;
+	stroke-width: 2px;
+  cursor: pointer;
+}
+
+.line-selected,
+.line-selected:hover {
+  stroke: #f00 !important;
+}
+.domain,
+.tick line {
+  stroke: #fff;
+}
+.tick text {
+  fill: #000;
+}
+
+.chart-title {
+  font-size: 14px;
+  text-align: center;
+}
+
+.tooltip {
+  background: #fff;
+  line-height: 1.5em;
+  padding: 0.5em 1em 0.6em 1em;
+  border: 1px solid #999;
+  width: 21em;
+}
+.tooltip dl {
+  display: flex;
+  flex-wrap: wrap;
+  width: 20em;
+  margin: 0;
+}
+.tooltip dt {
+  width: 14em;
+  font-weight: normal;
+  margin: 0;
+}
+.tooltip dd {
+  width: 6em;
+  font-weight: bold;
+  margin: 0;
+}
+

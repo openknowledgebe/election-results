@@ -1,0 +1,18 @@
+.column {
+  max-width: 620px;
+  margin: auto;
+  height: 500px;
+  border: 1px solid black;
+}
+
+span.communeName {
+  text-transform: lowercase;
+  text-transform: capitalize;
+}
+
+.label {
+  font-family: roboto, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  text-transform: uppercase;
+}
