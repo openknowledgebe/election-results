@@ -4,12 +4,13 @@ import { Link, withRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { API, ELECTION_TYPE_MAP } from '../constants';
 import okbeLogo from '../assets/img/okbe-logo.png';
+import twitterLogo from '../assets/img/twitter-logo.png';
 import partiesLogos from '../assets/data/parties-logos.json';
 
 import '../assets/css/candidate.css';
 
-const Candidate = ({ history, match, electionData }) => {
-  history.listen(location => ReactGA.pageview(location.pathname));
+const Candidate = ({ location, history, match, electionData }) => {
+  history.listen(loc => ReactGA.pageview(loc.pathname));
   const [candidate, setCandidateDetail] = useState(null);
 
   const { year, list, type } = match.params;
@@ -29,19 +30,19 @@ const Candidate = ({ history, match, electionData }) => {
   const splitName = (fullName) => {
     const parts = fullName.split(' ');
     const name = {
-      firstName: '',
-      lastName: ''
+      first: '',
+      last: ''
     };
     parts.forEach((part) => {
       // last names are capitalized
-      if (part.toUpperCase() === part) name.lastName += `${capitalizeFirstLetter(part.toLowerCase())} `;
-      else name.firstName += `${capitalizeFirstLetter(part.toLowerCase())} `;
+      if (part.toUpperCase() === part) name.last += `${capitalizeFirstLetter(part.toLowerCase())} `;
+      else name.first += `${capitalizeFirstLetter(part.toLowerCase())} `;
     });
     return name;
   }
 
   const candidateName = splitName(candidate.name);
-  document.title = `${candidateName.firstName} ${candidateName.lastName} | Open Knowledge Belgium`;
+  document.title = `${candidateName.first} ${candidateName.last} | Open Knowledge Belgium`;
 
   const color = candidate.list.group.color;
 
@@ -63,7 +64,7 @@ const Candidate = ({ history, match, electionData }) => {
 
   const partyLogoSrc = partiesLogos.find((p) => {
     return p.name.toLowerCase() === candidate.list.group.name.toLowerCase();
-  }) || null;
+  });
 
   const timestamp = moment(`${election.results.date} ${election.results.time}`, 'DD/MM/YYYY HH:mm:ss').format(('MMM Mo YYYY HH:mm:ss'));
 
@@ -71,14 +72,14 @@ const Candidate = ({ history, match, electionData }) => {
     <div className="candidate-container">
       <header>
         <div className="party-logo-container">
-          { partyLogoSrc !== null
+          { partyLogoSrc.img
             ? <img src={partyLogoSrc.img} alt={`${candidate.list.name} logo`} />
             : <p>No party logo available</p>
           }
         </div>
         <div className="name-container" style={{ backgroundColor: `#${color}` }}>
-          <h2 className="first-name">{candidateName.firstName}</h2>
-          <h2 className="last-name">{candidateName.lastName}</h2>
+          <h2 className="first-name">{candidateName.first}</h2>
+          <h2 className="last-name">{candidateName.last}</h2>
           <h3>#{candidate.nr} {ELECTION_TYPE_MAP[type].nl}/{ELECTION_TYPE_MAP[type].fr}</h3>
         </div>
       </header>
@@ -105,6 +106,14 @@ const Candidate = ({ history, match, electionData }) => {
       </div>
       <div className="card-actions">
         <Link to={`/${year}`}>&larr; View all candidates</Link>
+        <a
+          href={`https://twitter.com/intent/tweet?text=View real-time election results of ${candidateName.first.trim()} ${candidateName.last.trim()} at https://elections.openknowledge.be/${location.pathname} @OpenKnowledgeBE`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="twitter"
+        >
+          <span className="twitter-logo-container"><img src={twitterLogo} alt="Twitter logo" /></span> Tweet about this
+        </a>
       </div>
     </div>
   );

@@ -57,3 +57,7 @@ a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.twitter {
+  color: #00aced!important;
+}

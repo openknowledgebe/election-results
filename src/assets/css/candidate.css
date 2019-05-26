@@ -118,5 +118,22 @@
 .card-actions {
   display: flex;
   margin-top: 1.5rem;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-actions a.twitter {
+  display: flex;
+  align-items: center;
+}
+
+.twitter-logo-container {
+  width: 2.2rem;
+  display: inline-block;
+  margin-right: .5rem;
+}
+
+.twitter-logo-container img {
+  width: 100%;
 }

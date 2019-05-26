@@ -16,7 +16,7 @@ const Overview = ({ match, electionData, history }) => {
   const generateSlug = s => s.replace(/\s+/g, '-').toLowerCase();
 
   const renderCandidate = (candidate, type) => {
-    const URL = `/2019/${type}/${candidate.list.name}/${generateSlug(candidate.name)}-${candidate.id}`;
+    const URL = `/2019/${type}/${encodeURIComponent(candidate.list.name)}/${generateSlug(candidate.name)}-${candidate.id}`;
     return (
       <li key={candidate.id}>
         <Link to={URL}>{candidate.name}</Link>
