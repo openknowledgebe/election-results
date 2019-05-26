@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
+import { API } from '../constants';
 import okbeLogo from '../assets/img/okbe-logo.png';
 import partiesLogos from '../assets/data/parties-logos.json';
 
 import '../assets/css/candidate.css';
 
 const Candidate = ({ match, electionData }) => {
-  if (electionData.length === 0) return <p>Loading...</p>;
+  const [candidate, setCandidateDetail] = useState(null);
 
-  console.log(electionData);
   const { year, list, type } = match.params;
 
   const candidateSlug = match.params.candidate;
   const candidateId = candidateSlug.split('-').pop().trim();
 
+  useEffect(() => {
+    API.getResultsPerCandidate(candidateId, type).then(setCandidateDetail);
+  }, [candidateId]);
+
+  if (electionData.length === 0 || !candidate) return <p>Loading...</p>;
+
   const election = electionData.find(e => e.type === type);
-  const candidate = election.candidates.find(c => c.id === parseInt(candidateId));
+  console.log(electionData);
 
   const capitalizeFirstLetter = s => s.charAt(0).toUpperCase() + s.slice(1);
   const splitName = (fullName) => {
@@ -36,25 +42,26 @@ const Candidate = ({ match, electionData }) => {
   const candidateName = splitName(candidate.name);
   const color = candidate.list.group.color;
 
-  // TODO populate
-  const numVotes = election.results[candidate.list.id].candidates[candidateId].votes;
-  const registeredBallots = election.results.count.registered_ballot;
-
-  const sumVotes = Object.keys(registeredBallots).reduce((num, key) => {
-    return num + registeredBallots[key];
-  }, 0);
-  const percentageOfVotes = parseInt((numVotes / sumVotes) * 100, 0);
-
   let processedStations = 0;
   const totalStations = election.evolution.reduce((sum, evo) => {
     processedStations += evo.stations_processed;
     return sum + evo.stations_total;
   }, 0);
 
-
   const partyImgSrc = partiesLogos.find((p) => {
-    return p.name === candidate.list.group.name && p.ids.includes(candidate.list.group.id);
+    return p.name.toLowerCase() === candidate.list.group.name.toLowerCase();
   }) || null;
+
+  if (!candidate) return <p>Loading</p>;
+  console.log({ candidate });
+
+  const registeredBallots = election.results.count.registered_ballot;
+
+  const numVotes = candidate.votes;
+  const sumVotes = Object.keys(registeredBallots).reduce((num, key) => {
+    return num + registeredBallots[key];
+  }, 0);
+  const percentageOfVotes = parseInt((numVotes / sumVotes) * 100, 0) || 0;
 
   console.log(candidate, partiesLogos);
   return (

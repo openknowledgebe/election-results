@@ -38,15 +38,19 @@ class API {
   }
 
   getCandidates = (type = 'CK', year = 2019) => {
-    return fetch(`${this.BASE_URL}/format-i/candidates/${year}/${type}?test`, this.fetchOptions).then(this.handleResponse);
+    return fetch(`${this.BASE_URL}/format-i/candidates/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
   }
 
   getResults = (type = 'CK', year = 2019) => {
-    return fetch(`${this.BASE_URL}/format-r/results/${year}/${type}?test&final`, this.fetchOptions).then(this.handleResponse);
+    return fetch(`${this.BASE_URL}/format-r/results/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
   }
 
   getEvolution = (type = 'CK', year = 2019) => {
-    return fetch(`${this.BASE_URL}/format-r/evolution/${year}/${type}?test`, this.fetchOptions).then(this.handleResponse);
+    return fetch(`${this.BASE_URL}/format-r/evolution/${year}/${type}`, this.fetchOptions).then(this.handleResponse);
+  }
+
+  getResultsPerCandidate = (candidateId, type = 'CK', year = 2019) => {
+    return fetch(`${this.BASE_URL}/votes/candidates/${year}/${type}/${candidateId}`, this.fetchOptions).then(this.handleResponse);
   }
 }
 
